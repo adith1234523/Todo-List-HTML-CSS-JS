@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="sample.css">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <form id="todo-form">
+            <input type="text" id="todo-input" placeholder="Enter a new task">
+            <button type="submit">Add</button>
+        </form>
+        <ul id="todo-list">
+            <div id="ul">
+
+            </div>
+            <!-- To-Do items will be appended here -->
+        </ul>
+    </div>
+
+    <script>
+       function sub() {
+            const task = document.querySelector("#todo-input").value;
+            if (task === "") {
+                return;
+            }
+            const u = document.createElement("li");
+            u.textContent = task;
+            u.style.height = "32px";
+            u.style.margin = "6px";
+            u.style.width = "auto";
+            u.style.display = "flex";
+            u.style.justifyContent = "space-between";
+            u.style.alignItems = "center";
+            u.style.padding = "0 10px";
+            u.style.border = "1px solid #ddd";
+            u.style.borderRadius = "5px";
+
+            const del = document.createElement("button");
+            del.textContent = "Delete";
+            del.style.height = "32px";
+            del.style.marginLeft = "10px";
+            del.addEventListener("click", function () {
+                u.remove();
+            });
+
+            u.appendChild(del);
+            document.querySelector("#todo-list").appendChild(u);
+            document.querySelector("#todo-input").value = ""; // Clear the input field
+        }
+
+        document.querySelector("#todo-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            sub();
+        });
+    </script>
+</body>
+</html>
